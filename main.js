@@ -75,7 +75,6 @@ function game() {
   gameOver = enemies.length === 0 || player.hp === 0;
   if (gameOver) {
     player.vel = 0;
-    projectiles.length = 0;
     drawGameOverScreen();
   }
 }
@@ -183,20 +182,22 @@ function projectileHandler() {
       }
     })
 
-    enemies.forEach((e) => {
-      if (projectile.x >= e.x - 16
-        && projectile.x <= e.x + 17
-        && projectile.y <= e.y
-        && projectile.y >= e.y - 24) {
-        counter.shotsHit++;
-        projectiles.splice(projectiles.indexOf(projectile), 1);
-        e.hp--;
-        if (e.hp === 0) {
-          enemies.splice(enemies.indexOf(e), 1);
+    if (!gameOver) {
+      enemies.forEach((e) => {
+        if (projectile.x >= e.x - 16
+          && projectile.x <= e.x + 17
+          && projectile.y <= e.y
+          && projectile.y >= e.y - 24) {
+          counter.shotsHit++;
+          projectiles.splice(projectiles.indexOf(projectile), 1);
+          e.hp--;
+          if (e.hp === 0) {
+            enemies.splice(enemies.indexOf(e), 1);
+          }
+          return;
         }
-        return;
-      }
-    });
+      });
+    }
 
     projectile.y -= 2;
 
@@ -210,7 +211,7 @@ function projectileHandler() {
     ctx.fillRect(projectile.x - 2, projectile.y + 1, 5, 5);
     ctx.fillRect(projectile.x - 3, projectile.y + 2, 7, 3);
 
-    if (player.hp > 0 && hitsPlayer(projectile)) {
+    if (!gameOver && player.hp > 0 && hitsPlayer(projectile)) {
       player.hp--;
       hostileProjectiles.splice(hostileProjectiles.indexOf(projectile), 1);
     }
