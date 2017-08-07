@@ -33,23 +33,25 @@ window.onload = function() {
 }
 
 function run() {
-  canvas = document.createElement("CANVAS");
-  ctx = canvas.getContext("2d");
-  canvas.width = 680;
-  canvas.height = 400;
-  canvas.style = "position: fixed; top: 5px; left: 5px; opacity: .8; z-index: 10000";
-  document.body.appendChild(canvas);
-  init(false);
-  setInterval(() => {
-    game();
-  }, 1000/60);
+  if (!canvas) {
+    canvas = document.createElement("CANVAS");
+    ctx = canvas.getContext("2d");
+    canvas.width = 680;
+    canvas.height = 400;
+    canvas.style = "position: fixed; top: 5px; left: 5px; opacity: .8; z-index: 10000";
+    document.body.appendChild(canvas);
+    init(false);
+    setInterval(() => {
+      game();
+    }, 1000/60);
 
-  document.addEventListener("keydown", (event) => {
-    handleKeyDown(event);
-  });
-  document.addEventListener("keyup", (event) => {
-    handleKeyUp(event);
-  });
+    document.addEventListener("keydown", (event) => {
+      handleKeyDown(event);
+    });
+    document.addEventListener("keyup", (event) => {
+      handleKeyUp(event);
+    });
+  }
 }
 
 function game() {
