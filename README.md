@@ -8,3 +8,9 @@ arrow_right and arrow_left  - move the player
 space                       - shoots
 r                           - restart on game over / continue
 ```
+
+# HIGHSCORE
+
+[SvenGoesGit](https://github.com/SvenGoesGit)
+
+![SvenGoesGit](https://puu.sh/x508p/ed30a7cf79.png)
