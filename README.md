@@ -2,6 +2,8 @@
 
 I just recently discovered ```<canvas>``` and just had to play around with it!
 
+https://alasaell.github.io/space-invaders/
+
 ```
 Controls:
 arrow_right and arrow_left  - move the player
